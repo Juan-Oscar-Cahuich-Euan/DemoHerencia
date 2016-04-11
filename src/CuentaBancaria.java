@@ -1,38 +1,69 @@
 
 public class CuentaBancaria {
 
-    private int numeroDeCuenta;
+   private int numeroDeCuenta;
     private String cliente;
     private double saldo;
     
-    public CuentaBancaria(int numeroDeCuenta, String cliente) {
-    this.numeroDeCuenta = numeroDeCuenta;
-    this.cliente = cliente;
-    this.saldo = 0.0;
-}
-   public double getsaldo() {
-       return saldo;
-   } 
-   public boolean depositar (double cantidad) {
-       boolean seRealizoDeposito;
-       if (cantidad > 0.0) {
-           saldo = saldo + cantidad;
-           seRealizoDeposito =  true;
-       }
-       else {
-           seRealizoDeposito = false;
-       }
-       return seRealizoDeposito;
-   }
-   public boolean retirar (double cantidad) {
-       boolean seRealizoRetiro;
-       if (cantidad <= getsaldo()) {
-           saldo = saldo - cantidad;
-           seRealizoRetiro = true;
-       }
-       else { 
-           seRealizoRetiro = false;
-       }
-       return seRealizoRetiro;
-   }
-}
+    public CuentaBancaria (int numeroDeCuenta, String cliente){
+        this.cliente = cliente;
+        this.numeroDeCuenta = numeroDeCuenta;
+        this.saldo =0.0;
+    }
+    private void numeroDeCuenta(int numeroDeCuenta){
+        this.numeroDeCuenta = numeroDeCuenta;
+    }
+    
+    private void cliente(String cliente){
+        this.cliente = cliente;
+        
+    }
+    
+    public void Depositar(double cantidad){
+        if (this.puedeDepositar(cantidad)){
+            this.saldo = saldo + cantidad;
+        }
+        else {
+            System.out.println("No se puede hacer el deposito.");
+        }
+    }
+    
+    public void Retirar(double cantidad){
+        if (this.puedeRetirar(cantidad)){
+            this.saldo = saldo - cantidad;
+        }
+        else {
+            System.out.println("No se puede hacer el retiro.");
+        }
+    }
+    
+    public boolean puedeDepositar(double cantidad){
+        boolean siPuedeDepositar = false;
+        if (cantidad > 0) {
+            siPuedeDepositar = true;
+        }
+        return siPuedeDepositar;
+    }
+    
+    public boolean puedeRetirar(double cantidad){
+        boolean siPuedeRetirar = false;
+        if (cantidad < this.saldo){
+            siPuedeRetirar = true;
+        }
+        return siPuedeRetirar;
+    }
+    
+    public double getSaldo(){
+        return this.saldo;}
+        
+          public String getcliente(){
+        return this.cliente;}
+        
+        public int getnumeroDeCuenta(){
+        return this.numeroDeCuenta;
+        }
+ 
+          }
+    
+
+
